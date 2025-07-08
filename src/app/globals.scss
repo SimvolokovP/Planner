@@ -3,7 +3,10 @@
 @theme {
   --color-secondary: #b45309;
   --color-accent: #047857;
-  --color-background: #1f2937;
+  --color-card: oklch(0.205 0 0);
+  --color-border: oklch(1 0 0/10%);
+  --color-background: oklch(0.145 0 0);
+  --color-muted: oklch(.269 0 0);
   --color-primary: #3730a3;
   --color-error: #991b1b;
   --color-success: #15803d;
@@ -12,7 +15,7 @@
 body {
   @apply text-base overflow-hidden;
   color: #ffffff;
-  background-color: #1f2937;
+  background-color: oklch(0.145 0 0);
 
   @media (max-width: 1200px) {
     font-size: 16px;
