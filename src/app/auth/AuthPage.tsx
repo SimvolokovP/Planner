@@ -1,6 +1,7 @@
 "use client";
 
 import { LoginForm } from "@/components/LoginForm";
+import { RegisterForm } from "@/components/RegisterForm";
 import { Tabs } from "@/UI/Tabs";
 import { useState } from "react";
 
@@ -26,6 +27,7 @@ export function AuthPage() {
             </p>
           </div>
           {activeTab === "login" && <LoginForm />}
+          {activeTab === "register" && <RegisterForm />}
         </div>
       </div>
     </div>
