@@ -16,3 +16,13 @@ export interface IAuthResponse {
   accesToken: string;
   user: IUser;
 }
+
+export interface IProfileStatistic {
+  label: string;
+  value: string;
+}
+
+export interface IProfileResponse {
+  user: IUser;
+  statistics: IProfileStatistic[];
+}

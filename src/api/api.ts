@@ -2,6 +2,7 @@ import {
   getAccessToken,
   removeTokenFromStorage,
 } from "@/services/auth-token.service";
+import { authService } from "@/services/auth.service";
 import axios, { CreateAxiosDefaults } from "axios";
 
 const options: CreateAxiosDefaults = {

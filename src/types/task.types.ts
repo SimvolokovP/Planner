@@ -12,3 +12,9 @@ export interface ITaskResponse {
   priority?: EnumTaskPriority;
   isCompleted: boolean;
 }
+
+export interface ITaskToCreate {
+  name: string;
+  priority?: EnumTaskPriority;
+  isCompleted: boolean;
+}
