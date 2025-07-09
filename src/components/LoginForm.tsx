@@ -1,8 +1,14 @@
+import { PAGES } from "@/config/pages-url.config";
+import { authService } from "@/services/auth.service";
 import { IAuthForm } from "@/types/auth.types";
 import { Button } from "@/UI/Button";
 import { Input } from "@/UI/Input";
+import { Loader } from "@/UI/Loader";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 const loggedUserSchema = z.object({
@@ -17,12 +23,29 @@ export function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IAuthForm>({
     resolver: zodResolver(loggedUserSchema),
   });
 
+  const { push } = useRouter();
+
+  const loginMutation = useMutation({
+    mutationKey: ["auth", "login"],
+    mutationFn: authService.login,
+    onSuccess() {
+      toast.success("Login success!");
+      reset();
+      push(PAGES.HOME);
+    },
+    onError(error) {
+      toast.error(`Login error! ${error.message}`);
+    },
+  });
+
   const login = (data: IAuthForm) => {
     console.log(data);
+    loginMutation.mutate(data);
   };
 
   return (
@@ -44,8 +67,12 @@ export function LoginForm() {
         error={errors.password}
       />
 
-      <Button className="w-[120px]" type="submit">
-        Login
+      <Button
+        disabled={loginMutation.isPending}
+        className="w-[120px]"
+        type="submit"
+      >
+        {!loginMutation.isPending ? "Login" : <Loader />}
       </Button>
     </form>
   );

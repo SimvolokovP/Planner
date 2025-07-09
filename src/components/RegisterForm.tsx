@@ -1,9 +1,14 @@
 "use client";
 
+import { PAGES } from "@/config/pages-url.config";
+import { authService } from "@/services/auth.service";
 import { Button } from "@/UI/Button";
 import { Input } from "@/UI/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 type RegisterFormData = {
@@ -32,13 +37,30 @@ export function RegisterForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registeredUserSchema),
+  });
+
+  const { push } = useRouter();
+
+  const registerMutation = useMutation({
+    mutationKey: ["auth", "register"],
+    mutationFn: authService.register,
+    onSuccess() {
+      toast.success("Register success!");
+      reset();
+      push(PAGES.HOME);
+    },
+    onError(error) {
+      toast.error(`Register error! ${error.message}`);
+    },
   });
 
   const handleRegister = (data: RegisterFormData) => {
     const { email, password } = data;
     console.log({ email, password });
+    registerMutation.mutate(data);
   };
 
   return (
