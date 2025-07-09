@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/UI/Button";
 import { Input } from "@/UI/Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -36,7 +37,8 @@ export function RegisterForm() {
   });
 
   const handleRegister = (data: RegisterFormData) => {
-    console.log(data);
+    const { email, password } = data;
+    console.log({ email, password });
   };
 
   return (
@@ -72,12 +74,9 @@ export function RegisterForm() {
         error={errors.confirmPassword}
       />
 
-      <button
-        type="submit"
-        className="w-[120px] cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 shrink-0 outline-none bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2"
-      >
+      <Button className="w-[120px]" type="submit">
         Register
-      </button>
+      </Button>
     </form>
   );
 }
