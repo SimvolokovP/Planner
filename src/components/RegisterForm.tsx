@@ -72,27 +72,24 @@ export function RegisterForm() {
       })}
     >
       <Input
-        name="email"
         label="Email"
         type="email"
         placeholder="user@mail.com"
-        register={register}
+        {...register("email")}
         error={errors.email}
       />
 
       <Input
-        name="password"
         label="Password"
         type="password"
-        register={register}
+        {...register("password")}
         error={errors.password}
       />
 
       <Input
-        name="confirmPassword"
         label="Confirm Password"
         type="password"
-        register={register}
+        {...register("confirmPassword")}
         error={errors.confirmPassword}
       />
 

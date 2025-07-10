@@ -13,7 +13,7 @@ export interface IUser {
 }
 
 export interface IAuthResponse {
-  accesToken: string;
+  accessToken: string;
   user: IUser;
 }
 

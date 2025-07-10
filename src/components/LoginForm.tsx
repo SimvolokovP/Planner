@@ -51,19 +51,17 @@ export function LoginForm() {
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit(login)}>
       <Input
-        name="email"
         label="Email"
         type="email"
         placeholder="user@mail.com"
-        register={register}
+        {...register("email")}
         error={errors.email}
       />
 
       <Input
-        name="password"
         label="Password"
         type="password"
-        register={register}
+        {...register("password")}
         error={errors.password}
       />
 

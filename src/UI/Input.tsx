@@ -1,27 +1,28 @@
 import { cn } from "@/lib/utils";
+import { forwardRef } from "react";
 
-export const Input = ({
-  name,
-  label,
-  type = "text",
-  register,
-  error,
-  ...props
-}: {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
-  type?: string;
-  register: any;
   error?: { message?: string };
-} & React.InputHTMLAttributes<HTMLInputElement>) => {
+}
+
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { name, label, className, error, ...rest } = props;
+
   return (
     <div className="mb-4">
-      <label htmlFor={name} className="block text-sm font-medium mb-3 text-foreground">
+      <label
+        htmlFor={name}
+        className="block text-sm font-medium mb-3 text-foreground"
+      >
         {label}
       </label>
       <input
         id={name}
-        type={type}
+        ref={ref}
+        name={name}
+        type={props.type}
         className={cn(
           "placeholder:text-muted-foreground selection:bg-primary selection:text-primary",
           "flex h-9 w-full min-w-0 rounded-md border border-border bg-background px-3 py-1 text-base shadow-xs",
@@ -30,14 +31,13 @@ export const Input = ({
           error
             ? "border-error focus-visible:ring-error/50"
             : "focus-visible:ring-ring/50",
-          props.className
+          className
         )}
-        {...register(name)}
-        {...props}
+        {...rest}
       />
-      {error && (
-        <p className="mt-1 text-sm text-error">{error.message}</p>
-      )}
+      {error && <p className="mt-1 text-sm text-error">{error.message}</p>}
     </div>
   );
-};
+});
+
+Input.displayName = "input";
