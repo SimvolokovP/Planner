@@ -9,7 +9,7 @@ export function Dashboard() {
   const { profileData, isPending } = useProfile();
 
   return (
-    <div className="container">
+    <div>
       {isPending && <LoaderScreen />}
       <div className="mb-8">
         <Chapter title="Dashboard" />
