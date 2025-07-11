@@ -70,7 +70,7 @@ export function LoginForm() {
         className="w-[120px]"
         type="submit"
       >
-        {!loginMutation.isPending ? "Login" : <Loader />}
+        {!loginMutation.isPending ? "Login" : <Loader size={5} />}
       </Button>
     </form>
   );

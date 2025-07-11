@@ -1,9 +1,13 @@
 import { Loader as LoaderIcon } from "lucide-react";
 
-export function Loader() {
+interface LoaderProps {
+  size: number;
+}
+
+export function Loader({ size }: LoaderProps) {
   return (
     <div className="flex justify-center items-center">
-      <LoaderIcon className="h-5 w-5 animate-spin text-white" />
+      <LoaderIcon className={`h-${size} w-${size} animate-spin text-white`} />
     </div>
   );
 }

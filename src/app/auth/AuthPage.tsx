@@ -9,7 +9,7 @@ export function AuthPage() {
   const [activeTab, setActiveTab] = useState<"login" | "register">("login");
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center container">
       <div className="flex flex-col gap-1 md:gap-2 max-w-[384px] w-full">
         <Tabs
           activeTab={activeTab as string}

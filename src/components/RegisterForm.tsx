@@ -4,6 +4,7 @@ import { PAGES } from "@/config/pages-url.config";
 import { authService } from "@/services/auth.service";
 import { Button } from "@/UI/Button";
 import { Input } from "@/UI/Input";
+import { Loader } from "@/UI/Loader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -94,7 +95,7 @@ export function RegisterForm() {
       />
 
       <Button className="w-[120px]" type="submit">
-        Register
+        {!registerMutation.isPending ? "Register" : <Loader size={5} />}
       </Button>
     </form>
   );
