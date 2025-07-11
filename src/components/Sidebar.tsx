@@ -4,7 +4,7 @@ import Link from "next/link";
 export function Sidebar() {
   return (
     <aside
-      className={`border-r-2 border-r-border h-full flex-col justify-between py-[16px] transition-all duration-300 hidden md:flex items-center`}
+      className={`border-r-2 border-r-border h-full flex-col justify-between py-[16px] transition-all duration-300 hidden md:flex`}
     >
       <div className="text-sm">With ❤️ from ...</div>
       <nav className="relative w-full pr-[8px]">

@@ -21,7 +21,8 @@ export const authService = {
   async register(data: IAuthForm) {
     const response = await host.post<IAuthResponse>("/auth/register", data);
 
-    if (response.data.accessToken) saveTokenToStorage(response.data.accessToken);
+    if (response.data.accessToken)
+      saveTokenToStorage(response.data.accessToken);
 
     return response;
   },
@@ -29,15 +30,18 @@ export const authService = {
   async getNewTokens() {
     const response = await host.post<IAuthResponse>("/auth/login/access-token");
 
-    if (response.data.accessToken) saveTokenToStorage(response.data.accessToken);
+    if (response.data.accessToken)
+      saveTokenToStorage(response.data.accessToken);
     return response;
   },
 
   async logout() {
-    const response = await host.post("/auth/logout");
+    // const response = await host.post("/auth/logout");
 
-    if (response.data) removeTokenFromStorage();
+    // if (response.data) removeTokenFromStorage();
 
-    return response;
+    // return response;
+
+    removeTokenFromStorage();
   },
 };
