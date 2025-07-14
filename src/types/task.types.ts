@@ -10,11 +10,11 @@ export interface ITaskResponse {
   updatedAt?: string;
   name: string;
   priority?: EnumTaskPriority;
-  isCompleted: boolean;
+  isComleted: boolean;
 }
 
 export interface ITaskToCreate {
   name: string;
   priority?: EnumTaskPriority;
-  isCompleted: boolean;
+  isComleted: boolean;
 }
